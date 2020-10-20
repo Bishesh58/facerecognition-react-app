@@ -73,10 +73,28 @@ class App extends Component {
       box: {},
       route: 'signin',
       isSignIn: false,
+      user:{
+        id: '',
+        username: "",
+        email:'',
+        entries: 0,
+        joined: ''
+      }
     }
   }
 
+  loadUser =(data)=>{
+    this.setState({
+      user:{
+        id: data.id,
+        username: data.username,
+        email:data.email,
+        entries: data.entries,
+        joined: data.joined
+      }
 
+    })
+  }
 
   calculalateFaceLocation = (Data) =>{
     console.log(Data);
@@ -145,7 +163,7 @@ class App extends Component {
           </div>
             :(route === 'signin'
               ?  <SignIn onRouteChange={this.onRouteChange}/>
-              :  <Register onRouteChange={this.onRouteChange}/>
+              :  <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
             )
           }
       </div>
